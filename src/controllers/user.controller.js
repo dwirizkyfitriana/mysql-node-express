@@ -126,7 +126,8 @@ class UserController {
 
     checkValidation = (req) => {
         const errors = validationResult(req)
-        if (!error.isEmpty()) {
+        console.error(errors)
+        if (!errors.isEmpty()) {
             throw new HttpException(400, 'Validation failed', errors)
         }
     }
