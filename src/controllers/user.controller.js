@@ -1,6 +1,6 @@
 const UserModel = require('../models/user.model')
 const HttpException = require('../utils/HttpException.utils')
-const { validationRequest, validationResult } = require('express-validator')
+const { validationResult } = require('express-validator')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
@@ -13,7 +13,7 @@ class UserController {
     getAllUsers = async (req, res, next) => {
         let userList = await UserModel.find()
         if (!userList.length) {
-            throw new HttpException(404, 'User not found')
+            throw new HttpException(404, 'Users not found')
         }
 
         userList = userList.map(user => {
@@ -52,7 +52,7 @@ class UserController {
         res.send(userWithoutPassword)
     }
 
-    createUser = async (res, res, next) => {
+    createUser = async (req, res, next) => {
         this.checkValidation(req)
 
         await this.hashPassword(req)

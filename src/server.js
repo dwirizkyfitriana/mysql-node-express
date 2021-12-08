@@ -31,7 +31,7 @@ app.all('*', (req, res, next) => {
     next(err)
 })
 
-// app.use(errorMiddleware)
+app.use(errorMiddleware)
 
 // Starting the Server
 app.listen(port, () => console.log(`Server running on port ${port}`))
